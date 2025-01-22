@@ -11,7 +11,8 @@
       "@/hooks/*": ["hooks/*"],
       "@/styles/*": ["styles/*"],
       "@/providers/*": ["providers/*"],
-      "@/ui/*": ["ui/*"]
+      "@/ui/*": ["ui/*"],
+      "@/constants/*": ["constants/*"]
       
     }
   }
