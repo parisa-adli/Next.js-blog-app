@@ -42,6 +42,10 @@ const tailwindConfig = {
       fontFamily: {
         sans: ["var(--font-vazir)"],
       },
+      container: {
+        center: true,
+        padding: "1rem",
+      },
     },
   },
 };
