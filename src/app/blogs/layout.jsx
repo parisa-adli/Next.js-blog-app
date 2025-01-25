@@ -1,4 +1,7 @@
-function Layout({children}) {
+export const metadata = {
+  title: "بلاگ ها"
+};
+function Layout({ children }) {
   return (
     <div>
       <h1>لیست بلاگ ها</h1>
@@ -13,4 +16,4 @@ function Layout({children}) {
     </div>
   );
 }
-export default Layout
+export default Layout;
