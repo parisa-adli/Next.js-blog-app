@@ -1,16 +1,14 @@
-async function BlogPage() {
-  await new Promise((res) => setTimeout(() => res(), 3000));
+import { Suspense } from "react";
+import PostList from "./_components/PostList";
+import Loading from "./loading";
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`);
-  const {
-    data: { posts },
-  } = await res.json();
-  console.log(posts);
+async function BlogPage() {
   return (
     <div>
-      {posts.map((post) => (
-        <div key={post.id}>{post.title}</div>
-      ))}
+      <p className="text-2xl font-bold text-secondary-700 mb-8">لیست پست ها</p>
+      <Suspense fallback={<Loading />}>
+        <PostList />
+      </Suspense>
     </div>
   );
 }
