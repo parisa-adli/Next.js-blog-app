@@ -12,7 +12,9 @@
       "@/styles/*": ["styles/*"],
       "@/providers/*": ["providers/*"],
       "@/ui/*": ["ui/*"],
-      "@/constants/*": ["constants/*"]
+      "@/constants/*": ["constants/*"],
+      "@/public/*": ["public/*"]
+
       
     }
   }
