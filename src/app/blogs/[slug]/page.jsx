@@ -2,11 +2,11 @@ import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const posts = await getPosts();
-  const slug = posts.slice(0, 10).map((post) => ({ slug: post.slug }));
+  const slug = posts.map((post) => ({ slug: post.slug }));
   return slug;
 }
 
