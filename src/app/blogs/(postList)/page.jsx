@@ -11,9 +11,9 @@ export const revalidate = 15;
 
 // export const revalidate = 0 => dynamic page => opt out;
 
+// export const experimental_ppr = true;
 
 async function BlogPage() {
-
   return (
     <div>
       <p className="text-2xl font-bold text-secondary-700 mb-8">لیست پست ها</p>
