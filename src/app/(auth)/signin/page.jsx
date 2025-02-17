@@ -1,6 +1,5 @@
 "use client";
 
-import { signiApi } from "@/services/authService";
 import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
 import { yupResolver } from "@hookform/resolvers/yup";

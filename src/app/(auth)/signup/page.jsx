@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { signupApi } from "@/services/authService";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useAuth } from "context/AuthContext";
 
 // export const metadata = {
 //   title: "ثبت نام",
@@ -33,15 +34,10 @@ function Signup() {
     mode: "onTouched",
   });
 
+  const { signup } = useAuth();
+
   const onSubmit = async (values) => {
-    try {
-      const { user, message } = await signupApi(values);
-      console.log(user, message);
-      toast.success(message);
-    } catch (error) {
-      toast.error(error?.response?.data?.message);
-      console.log(error?.response?.data?.message);
-    }
+    await signup(values);
   };
 
   return (
