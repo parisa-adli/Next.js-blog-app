@@ -3,13 +3,33 @@
 import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 // export const metadata = {
 //   title: "ثبت نام",
 // };
 
+const schema = yup.object({
+  name: yup
+    .string()
+    .min(5, "نام و نام خانوادگی الزامی است")
+    .max(30, "حداکثر 30 کاراکتر وارد شود")
+    .required(),
+  email: yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),
+  password: yup.string().required("رمز عبور الزامی است"),
+});
+
 function Signup() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isLoading },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onTouched",
+  });
+
   const onSubmit = (valuse) => {
     console.log(valuse);
   };
@@ -24,12 +44,16 @@ function Signup() {
           label="نام و نام خانوادگی"
           name="name"
           register={register}
+          isRequired
+          errors={errors}
         />
         <RHFTextField
           label="ایمیل"
           name="email"
           register={register}
           dir="ltr"
+          isRequired
+          errors={errors}
         />
         <RHFTextField
           label="رمز عبور"
@@ -37,6 +61,8 @@ function Signup() {
           register={register}
           type="password"
           dir="ltr"
+          isRequired
+          errors={errors}
         />
         <Button type="submit" variant="primary" className="w-full">
           تایید
