@@ -1,29 +1,20 @@
 "use client";
 
+import { signinApi } from "@/services/authService";
 import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { signupApi } from "@/services/authService";
-import toast from "react-hot-toast";
 import Link from "next/link";
-
-// export const metadata = {
-//   title: "ثبت نام",
-// };
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import * as yup from "yup";
 
 const schema = yup.object({
-  name: yup
-    .string()
-    .min(5, "نام و نام خانوادگی الزامی است")
-    .max(30, "حداکثر 30 کاراکتر وارد شود")
-    .required(),
   email: yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),
   password: yup.string().required("رمز عبور الزامی است"),
 });
 
-function Signup() {
+function Signin() {
   const {
     register,
     handleSubmit,
@@ -35,7 +26,7 @@ function Signup() {
 
   const onSubmit = async (values) => {
     try {
-      const { user, message } = await signupApi(values);
+      const { user, message } = await signinApi(values);
       console.log(user, message);
       toast.success(message);
     } catch (error) {
@@ -47,16 +38,9 @@ function Signup() {
   return (
     <div>
       <h1 className="text-xl font-bold text-secondary-500 text-center mb-6">
-        ثبت نام
+        ورود
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
-        <RHFTextField
-          label="نام و نام خانوادگی"
-          name="name"
-          register={register}
-          isRequired
-          errors={errors}
-        />
         <RHFTextField
           label="ایمیل"
           name="email"
@@ -77,18 +61,11 @@ function Signup() {
         <Button type="submit" variant="primary" className="w-full">
           تایید
         </Button>
-        <Link href="/signin" className="text-secondary-500 mt-6 text-center">
-          ورود
+        <Link href="/signup" className="text-secondary-500 mt-6 text-center">
+          ثبت نام
         </Link>
       </form>
     </div>
   );
 }
-export default Signup;
-
-// 1. handle state
-// 2. validate form data
-// 3. form submission
-
-// => react-hook-form => OK
-// => formik
+export default Signin;
