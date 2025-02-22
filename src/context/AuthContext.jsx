@@ -91,7 +91,8 @@ export default function AuthProvider({ children }) {
     } catch (error) {
       const errorMsg = error?.response?.data?.message;
       dispatch({ type: "rejected", payload: errorMsg });
-      toast.error(errorMsg);
+      console.log(error);
+      error.response.data.statusCode === 401 ? "" : toast.error(errorMsg);
     }
   }
 
