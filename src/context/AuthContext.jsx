@@ -87,11 +87,10 @@ export default function AuthProvider({ children }) {
       await new Promise((res) => setTimeout(res, 3000));
       const { user } = await getUserApi();
       dispatch({ type: "user/loaded", payload: user });
-      console.log(user);
+      // console.log(user);
     } catch (error) {
       const errorMsg = error?.response?.data?.message;
       dispatch({ type: "rejected", payload: errorMsg });
-      console.log(error);
       error.response.data.statusCode === 401 ? "" : toast.error(errorMsg);
     }
   }
