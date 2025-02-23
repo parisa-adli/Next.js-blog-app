@@ -9,11 +9,7 @@ import { getPosts } from "@/services/postServices";
 import { cookies } from "next/headers";
 import { setCookieOnReq } from "@/utils/setCookieOnReq";
 
-async function PostList() {
-  const cookieStore = cookies();
-  const options = await setCookieOnReq(cookieStore);
-  const posts = await getPosts(options);
-
+async function PostList({ posts }) {
   return posts.length > 0 ? (
     <div className="grid grid-cols-12 gap-8">
       {posts.map((post) => (

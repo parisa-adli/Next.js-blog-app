@@ -2,6 +2,7 @@
 
 import Button from "@/ui/Button";
 import RHFTextField from "@/ui/RHFTextField";
+import SpinnerMini from "@/ui/SpinnerMini";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "context/AuthContext";
 import Link from "next/link";
@@ -52,16 +53,19 @@ function Signin() {
           isRequired
           errors={errors}
         />
-        {isLoading ? (
-          <Button type="submit" variant="primary" className="w-full">
-            تایید
-          </Button>
-        ) : (
-          <Link href="/signup" className="text-secondary-500 mt-6 text-center">
-            ثبت نام
-          </Link>
-        )}
+        <div className="flex justify-center">
+          {isLoading ? (
+            <SpinnerMini />
+          ) : (
+            <Button type="submit" variant="primary" className="w-full">
+              تایید
+            </Button>
+          )}
+        </div>
       </form>
+      <Link href="/signup" className="text-secondary-500 mt-6 text-center">
+        ثبت نام
+      </Link>
     </div>
   );
 }
