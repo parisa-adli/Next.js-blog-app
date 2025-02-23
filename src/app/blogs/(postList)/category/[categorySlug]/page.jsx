@@ -1,9 +1,12 @@
 import PostList from "app/blogs/_components/PostList";
+import queryString from "query-string";
 
-async function Category({ params }) {
+async function Category({ params, searchParams }) {
   const { categorySlug } = params;
+  const queries = queryString.stringify(searchParams);
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/post/list?categorySlug=${categorySlug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/list?categorySlug=${categorySlug}&${queries}`
   );
 
   const { data } = await res.json();
