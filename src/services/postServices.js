@@ -9,10 +9,12 @@ export async function getPostBySlug(slug) {
   return post;
 }
 
-export async function getPosts() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/post/list`, {
-    next: { revalidate: 3600 },
-  });
+export async function getPosts(options) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/post/list`,
+    options
+  );
+
   const { data } = await res.json();
   const { posts } = data || {};
   return posts;
