@@ -9,8 +9,6 @@ async function Category({ params }) {
   const { data } = await res.json();
   const { posts } = data || {};
 
-  console.log(posts);
-
   return (
     <div>
       {posts.length === 0 ? (
