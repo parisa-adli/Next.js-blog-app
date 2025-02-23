@@ -52,12 +52,15 @@ function Signin() {
           isRequired
           errors={errors}
         />
-        <Button type="submit" variant="primary" className="w-full">
-          تایید
-        </Button>
-        <Link href="/signup" className="text-secondary-500 mt-6 text-center">
-          ثبت نام
-        </Link>
+        {isLoading ? (
+          <Button type="submit" variant="primary" className="w-full">
+            تایید
+          </Button>
+        ) : (
+          <Link href="/signup" className="text-secondary-500 mt-6 text-center">
+            ثبت نام
+          </Link>
+        )}
       </form>
     </div>
   );
