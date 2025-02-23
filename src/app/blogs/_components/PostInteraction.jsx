@@ -1,6 +1,6 @@
 "use client";
 
-import { likePostApi } from "@/services/postServices";
+import { bookmarkPostApi, likePostApi } from "@/services/postServices";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { toPersianDigits } from "@/utils/numberformatter";
 import {
@@ -17,9 +17,20 @@ import toast from "react-hot-toast";
 
 function PostInteraction({ post }) {
   const router = useRouter();
+
   const likeHandler = async (postId) => {
     try {
       const { message } = await likePostApi(postId);
+      toast.success(message);
+      router.refresh();
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const bookmarkHandler = async (postId) => {
+    try {
+      const { message } = await bookmarkPostApi(postId);
       toast.success(message);
       router.refresh();
     } catch (error) {
@@ -36,8 +47,8 @@ function PostInteraction({ post }) {
         <ChatBubbleLeftEllipsisIcon />
         <span>{toPersianDigits(post.commentsCount)}</span>
       </ButtonIcon>
-      <ButtonIcon variant="primary">
-        <BookmarkIcon />
+      <ButtonIcon variant="primary" onClick={() => bookmarkHandler(post._id)}>
+        {post.isBookmarked ? <SolidBookmarkIcon /> : <BookmarkIcon />}
       </ButtonIcon>
     </div>
   );
