@@ -21,11 +21,25 @@ async function BlogPage({ searchParams }) {
   const options = await setCookieOnReq(cookieStore);
   const posts = await getPosts(queries, options);
 
+  const { search } = searchParams;
+
   return (
-    <div>
-      <p className="text-2xl font-bold text-secondary-700 mb-8">لیست پست ها</p>
+    <>
+      {search ? (
+        <p className="mb-4 text-secondary-700">
+          {posts.length === 0
+            ? "هیچ پستی با این مشخصات یافت نشد"
+            : `نشان دادن ${posts.length} برای `}
+          <span className="font-bold">&quot;{search}&quot;</span>
+        </p>
+      ) : null}
       <PostList posts={posts} />
-    </div>
+    </>
   );
 }
 export default BlogPage;
+
+//? FOR ENGLISH TEXT:
+// showing 3 result for "dummy"
+// const resultText = post.length > 1 ? "results" : "result";
+// {`showing ${posts.length} ${resultText} for`}
