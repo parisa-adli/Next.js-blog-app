@@ -16,12 +16,12 @@ import queryString from "query-string";
 // export const experimental_ppr = true;
 
 async function BlogPage({ searchParams }) {
-  const queries = queryString.stringify(searchParams);
-  const cookieStore = cookies();
+  const queries = await queryString.stringify(await searchParams);
+  const cookieStore = await cookies();
   const options = await setCookieOnReq(cookieStore);
   const posts = await getPosts(queries, options);
 
-  const { search } = searchParams;
+  const { search } = await searchParams;
 
   return (
     <>

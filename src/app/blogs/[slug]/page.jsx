@@ -11,12 +11,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug);
+  const post = await getPostBySlug((await params).slug);
   return { title: `پست ${post.title}` };
 }
 
 async function SinglePost({ params }) {
-  const post = await getPostBySlug(params.slug);
+  const post = await getPostBySlug((await params).slug);
 
   if (!post) notFound();
   return (

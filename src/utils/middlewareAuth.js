@@ -1,6 +1,6 @@
 export async function middlewareAuth(req) {
-  const accessToken = req.cookies.get("accessToken");
-  const refreshToken = req.cookies.get("refreshToken");
+  const accessToken = await req.cookies.get("accessToken");
+  const refreshToken = await req.cookies.get("refreshToken");
 
   const options = {
     method: "GET",
