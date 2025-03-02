@@ -1,6 +1,7 @@
 import { getPostBySlug, getPosts } from "@/services/postServices";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import RelatedPost from "../_components/RelatedPost";
 
 export const dynamicParams = false;
 
@@ -35,8 +36,8 @@ async function SinglePost({ params }) {
           quality={100}
         />
       </div>
-      {/* {post.related.length > 0 ? <RelatedPost posts={post.related} /> : null}
-      <BlogComments post={post} /> */}
+     {post.related.length > 0 && <RelatedPost posts={post.related} /> }
+      {/* <BlogComments post={post.related} />  */}
     </div>
   );
 }
