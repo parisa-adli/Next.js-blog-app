@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^4.1.0",
     "@tailwindcss/postcss": "^4.0.6",
     "axios": "^1.7.9",
+    "classnames": "^2.5.1",
     "next": "15.1.5",
     "query-string": "^9.1.1",
     "react": "^19.0.0",
