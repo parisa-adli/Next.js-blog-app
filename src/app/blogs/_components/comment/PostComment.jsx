@@ -11,7 +11,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 function PostComment({ post: { comments, _id: postId } }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [parent, setParent] = useState(null);
   const { user } = useAuth();
   const router = useRouter();
@@ -33,7 +33,7 @@ function PostComment({ post: { comments, _id: postId } }) {
         title={parent ? "پاسخ به نظر" : "نظر جدید"}
         description={parent ? parent.user.name : "نظر خود را وارد کنید"}
       >
-        <CommentForm />
+        <CommentForm postId={postId} parentId={parent ? parent._id : null} />
       </Modal>
       <div className="flex flex-col items-center lg:flex-row justify-between gap-y-3 mb-8">
         <h2 className="text-2xl font-bold text-secondary-800">نظرات</h2>
