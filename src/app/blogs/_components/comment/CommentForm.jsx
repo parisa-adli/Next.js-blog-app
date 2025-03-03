@@ -2,6 +2,7 @@
 
 import { createComment } from "@/lib/actions";
 import Button from "@/ui/Button";
+import SubmitButton from "@/ui/SubmitButton";
 import TextArea from "@/ui/TextArea";
 import { useState } from "react";
 
@@ -22,18 +23,7 @@ function CommentForm({ postId, parentId }) {
               isRequired
               onChange={(e) => setText(e.target.value)}
             />
-            {/* <div className="mt-8">
-              {isLoading ? (
-                <div>
-                  <Loading />
-                </div>
-              ) : (
-                <SubmitButton type="submit" className="w-full">
-                  {parentId ? "ثبت پاسخ" : "ثبت نظر"}
-                </SubmitButton>
-              )}
-            </div> */}
-            <Button>تایید</Button>
+          <SubmitButton>تایید</SubmitButton>
           </form>
         </div>
       </div>
