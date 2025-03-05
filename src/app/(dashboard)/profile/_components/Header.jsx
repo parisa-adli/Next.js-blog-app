@@ -30,7 +30,7 @@ function Header({}) {
         </span>
 
         <Link href="/profile">
-          <Avatar src={user?.avatarUrl} />
+          <Avatar src={user?.avatarUrl}/>
         </Link>
 
         <Drawer open={isOpenDrawer} onClose={() => setIsOpenDrawer(false)}>
