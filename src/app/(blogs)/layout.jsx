@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 
-function Layout() {
+function Layout({ children }) {
   return (
     <>
       <Header />
