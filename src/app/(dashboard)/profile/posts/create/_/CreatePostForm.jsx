@@ -5,10 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import RHFTextField from "@/ui/RHFTextField";
 import RHFSelect from "@/ui/RHFSelect";
+import { useCategories } from "@/hooks/useCategories";
 
 const schema = yup.object();
 
 function CreatePostForm() {
+  const { categories } = useCategories();
   const {
     register,
     formState: { errors },
@@ -61,7 +63,7 @@ function CreatePostForm() {
         register={register}
         errors={errors}
         isRequired
-        options={[]}
+        options={categories}
       />
     </form>
   );
