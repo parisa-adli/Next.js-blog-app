@@ -11,6 +11,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import FileInput from "@/ui/FileInput";
 
 const schema = yup.object();
 
@@ -80,8 +81,8 @@ function CreatePostForm() {
         rules={{ required: "کاور پست الزامی است" }}
         render={({ field: { value, onChange, ...rest } }) => {
           return (
-            <TextField
-              type="file"
+            <FileInput
+              label="انتخاب کاور پست"
               name="cover-image"
               isRequired
               {...rest}
@@ -90,7 +91,7 @@ function CreatePostForm() {
                 const file = event.target.files[0];
                 onChange(file);
                 setCoverImageUrl(URL.createObjectURL(file));
-              event.
+                event.target.value = null;
               }}
             />
           );
@@ -106,8 +107,8 @@ function CreatePostForm() {
           />
           <ButtonIcon
             onClick={() => {
-              setCoverImageUrl(null)
-              setValue("coverImage",null)
+              setCoverImageUrl(null);
+              setValue("coverImage", null);
             }}
             variant="red"
             className="absolute w-6 h-6 left-2 top-2"
