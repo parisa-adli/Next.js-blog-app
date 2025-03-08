@@ -1,7 +1,7 @@
 "use client";
 
 import ButtonIcon from "@/ui/ButtonIcon";
-import ConfirmDelete from "@/ui/ConfrimDelete";
+import ConfirmDelete from "@/ui/ConfirmDelete";
 import Modal from "@/ui/Modal";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
