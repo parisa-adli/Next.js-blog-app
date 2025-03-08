@@ -1,8 +1,7 @@
-"use client";
-
 import { createPortal } from "react-dom";
 
 function Drawer({ open, onClose, children }) {
+  if (typeof document === "undefined") return null;
   return createPortal(
     <>
       <div

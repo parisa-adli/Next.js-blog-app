@@ -3,7 +3,8 @@ import BreadCrumbs from "@/ui/BreadCrumbs";
 import { notFound } from "next/navigation";
 import CreatePostForm from "../../create/_/CreatePostForm";
 
-async function EditPage({ params: { postId } }) {
+async function EditPage({ params }) {
+  const { postId } = await params;
   const { post } = await getPostById(await postId);
 
   if (!post) return notFound();
