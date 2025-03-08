@@ -6,7 +6,7 @@ import * as yup from "yup";
 import RHFTextField from "@/ui/RHFTextField";
 import RHFSelect from "@/ui/RHFSelect";
 import { useCategories } from "@/hooks/useCategories";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -16,6 +16,7 @@ import useCreatePost from "./useCreatePost";
 import SpinnerMini from "@/ui/SpinnerMini";
 import { useRouter } from "next/navigation";
 import useEditPost from "./useEditPost";
+import { imageUrlToFile } from "@/utils/fileFormatter";
 
 const schema = yup
   .object({
@@ -85,6 +86,17 @@ function CreatePostForm({ postToEdit = {} }) {
     resolver: yupResolver(schema),
     defaultValues: editValues,
   });
+
+  useEffect(() => {
+    if (prevCoverImageUrl) {
+      // convert prev link to file
+      async function fetchMyApi() {
+        const file = await imageUrlToFile(prevCoverImageUrl);
+        setValue("coverImage", file);
+      }
+      fetchMyApi();
+    }
+  }, [editId]);
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -197,7 +209,7 @@ function CreatePostForm({ postToEdit = {} }) {
         </div>
       )}
       <div>
-        {isCreating ? (
+        {isCreating || isEditing ? (
           <SpinnerMini />
         ) : (
           <Button variant="primary" type="submit" className="w-full">
