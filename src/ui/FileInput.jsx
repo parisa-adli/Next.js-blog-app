@@ -16,7 +16,9 @@ function FileInput({
   const hasError = !!(errors && errorMessages);
 
   return (
-    <>
+    <div
+      className={`textField relative ${hasError ? "textField--invalid" : ""}`}
+    >
       <label
         htmlFor="file-upload"
         className={`cursor-pointer border-2 border-primary-900 rounded-lg x-3 py-2 text-primary-900 flex items-center justify-center gap-x-2 ${className}`}
@@ -40,7 +42,7 @@ function FileInput({
           {errors[name]?.message}
         </span>
       )}
-    </>
+    </div>
   );
 }
 export default FileInput;
