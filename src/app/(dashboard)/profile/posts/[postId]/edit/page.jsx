@@ -5,10 +5,9 @@ import CreatePostForm from "../../create/_/CreatePostForm";
 
 async function EditPage({ params: { postId } }) {
   const { post } = await getPostById(await postId);
-  console.log(post);
-  if (!post) {
-    notFound();
-  }
+
+  if (!post) return notFound();
+
   return (
     <div>
       <BreadCrumbs
@@ -24,7 +23,7 @@ async function EditPage({ params: { postId } }) {
           },
         ]}
       />
-      <CreatePostForm />
+      <CreatePostForm postToEdit={post} />
     </div>
   );
 }

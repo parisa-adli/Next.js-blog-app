@@ -15,6 +15,7 @@ import Button from "@/ui/Button";
 import useCreatePost from "./useCreatePost";
 import SpinnerMini from "@/ui/SpinnerMini";
 import { useRouter } from "next/navigation";
+import useEditPost from "./useEditPost";
 
 const schema = yup
   .object({
@@ -41,10 +42,36 @@ const schema = yup
   })
   .required();
 
-function CreatePostForm() {
+function CreatePostForm({ postToEdit = {} }) {
+  const { _id: editId } = postToEdit;
+  const isEditSession = Boolean(editId);
+  const {
+    title,
+    text,
+    slug,
+    briefText,
+    readingTime,
+    category,
+    covetImage,
+    coverImageUrl: prevCoverImageUrl,
+  } = postToEdit;
+
+  let editValues = {};
+  if (isEditSession) {
+    editValues = {
+      title,
+      text,
+      slug,
+      briefText,
+      readingTime,
+      category: category._id,
+      covetImage,
+    };
+  }
   const { categories } = useCategories();
-  const [coverImageUrl, setCoverImageUrl] = useState(null);
+  const [coverImageUrl, setCoverImageUrl] = useState(prevCoverImageUrl || null);
   const { isCreating, createPost } = useCreatePost();
+  const { isEditing, editPost } = useEditPost();
   const router = useRouter();
   const {
     control,
@@ -56,6 +83,7 @@ function CreatePostForm() {
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(schema),
+    defaultValues: editValues,
   });
 
   const onSubmit = (data) => {
@@ -63,9 +91,21 @@ function CreatePostForm() {
     for (const key in data) {
       formData.append(key, data[key]);
     }
-    createPost(formData, {
-      onSuccess: () => router.push("/profile/posts"),
-    });
+    if (isEditSession) {
+      editPost(
+        { id: editId, data: formData },
+        {
+          onSuccess: () => {
+            reset();
+            router.push("/profile/posts");
+          },
+        }
+      );
+    } else {
+      createPost(formData, {
+        onSuccess: () => router.push("/profile/posts"),
+      });
+    }
   };
 
   return (
