@@ -6,15 +6,15 @@ import CategoryRow from "./CategoryRow";
 async function CategoriesTable() {
   const { categories } = await getCategoriesApi();
 
-  if (!categories.length) return <Empty resourceName="پستی" />;
+  if (!categories.length) return <Empty resourceName="دسته بندی" />;
 
   return (
     <Table>
       <Table.Header>
         <th>#</th>
         <th>عنوان</th>
-        <th>دسته بندی</th>
-        <th>اسلاگ</th>
+        <th>عنوان انگلیسی</th>
+        <th>توضیحات</th>
         <th>تاریخ ایجاد</th>
         <th>عملیات</th>
       </Table.Header>
