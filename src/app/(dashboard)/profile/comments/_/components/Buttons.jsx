@@ -7,6 +7,7 @@ import Modal from "@/ui/Modal";
 import ConfirmDelete from "@/ui/ConfirmDelete";
 import useDeleteComment from "../useDeleteComment";
 import { useRouter } from "next/navigation";
+import UpdateCommentForm from "./UpdateCommentForm";
 
 export function DeleteComment({ id }) {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -47,15 +48,21 @@ export function DeleteComment({ id }) {
 
 export function UpdateComment({ comment }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const onClose = () => setIsEditOpen(false);
   return (
     <>
       <ButtonIcon variant="outline" onClick={() => setIsEditOpen(true)}>
         <PencilIcon className="text-error" />
       </ButtonIcon>
 
-      <Modal title={`ویرایش نظر`} open={isEditOpen} onClose={onClose}>
-        {/* <EditCommentForm onClose={onClose} comment={comment} /> */}
+      <Modal
+        title={`ویرایش نظر`}
+        open={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+      >
+        <UpdateCommentForm
+          onClose={() => setIsEditOpen(false)}
+          comment={comment}
+        />
       </Modal>
     </>
   );

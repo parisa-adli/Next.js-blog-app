@@ -8,14 +8,14 @@ export async function getAllCommentsApi(options = {}) {
   return http.get("/comment/list", options).then(({ data }) => data.data);
 }
 
-export async function deleteCommentApi({id, options = {}}) {
+export async function deleteCommentApi({ id, options = {} }) {
   return http
     .delete(`/comment/remove/${id}`, options)
     .then(({ data }) => data.data);
 }
 
-export async function updateCommentApi({ id, data }, options = {}) {
+export async function updateCommentApi({ id, data }) {
   return http
-    .patch(`/comment/update/${id}`, data, options)
+    .patch(`/comment/update/${id}`, data)
     .then(({ data }) => data.data);
 }

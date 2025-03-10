@@ -1,7 +1,7 @@
 import Table from "@/ui/Table";
 import { toLocalDateShort } from "@/utils/dateFormatter";
 import truncateText from "@/utils/truncateText";
-import { DeleteComment } from "./Buttons";
+import { DeleteComment, UpdateComment } from "./Buttons";
 
 const statusStyle = [
   {
@@ -38,7 +38,7 @@ function CommentRow({ index, comment }) {
       </td>
       <td>
         <div className="flex items-center gap-x-3">
-          {/* <UpdateComment comment={comment} /> */}
+          <UpdateComment comment={comment} />
           <DeleteComment id={comment._id} />
         </div>
       </td>
