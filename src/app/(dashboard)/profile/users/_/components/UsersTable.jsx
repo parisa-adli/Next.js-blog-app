@@ -20,7 +20,6 @@ async function UsersTable() {
         <th>نام کاربر</th>
         <th>ایمیل</th>
         <th>تاریخ ثبت نام</th>
-        <th>عملیات</th>
       </Table.Header>
       <Table.Body>
         {users.map((user, index) => (
