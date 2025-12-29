@@ -1,13 +1,9 @@
-import Image from "next/image";
 import CoverImage from "./CoverImage";
 import Link from "next/link";
 import { ClockIcon } from "@heroicons/react/24/outline";
-import Avatar from "@/ui/Avatar";
 import Author from "./Author";
 import PostInteraction from "./PostInteraction";
-import { getPosts } from "@/services/postServices";
-import { cookies } from "next/headers";
-import { setCookieOnReq } from "@/utils/setCookieOnReq";
+
 
 async function PostList({ posts }) {
   return posts.length > 0 ? (
